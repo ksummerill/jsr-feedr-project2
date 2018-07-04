@@ -46,6 +46,7 @@ function makeGuardianRequest(guardianUrl, error, response, body) {
 
   xhr.send();
 
+// here's my comment
 };
 
 makeGuardianRequest(guardianUrl);
