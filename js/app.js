@@ -22,7 +22,7 @@ function makeGuardianRequest(guardianUrl, error, response, body) {
             <img src="images/article_placeholder_2.jpg" alt="" />
           </section>
           <section class="articleContent">
-              <a href="#"><h3>${allArticles[i].webTitle}</h3></a>
+              <a href="#"><h3 data-url="${allArticles[i].webUrl}">${allArticles[i].webTitle}</h3></a>
               <h6>${allArticles[i].sectionName}</h6>
           </section>
           <section class="impressions">
@@ -35,18 +35,18 @@ function makeGuardianRequest(guardianUrl, error, response, body) {
     $("#main").append(articleContent);
     popUp();
 
-    //$(".article").on("click", function() {
   $(".article").on("click", "h3", function () {
       var articleTitle = $(event.target).html();
+      var articleUrl = $(event.target).data("url");
       var popUpChildren = $("#popUp").children(".container");
       popUpChildren.children("h1").html(articleTitle);
+      var myButton = $(".popUpAction").attr("href", articleUrl);
 
   });
 }
 
   xhr.send();
 
-// here's my comment
 };
 
 makeGuardianRequest(guardianUrl);
@@ -57,9 +57,6 @@ function popUp(){
   var delayInMilliseconds = 1000;
   $(".article h3").on("click", function() {
       document.getElementById("popUp").classList.remove("hidden");
-    //  function() {
-
-    //  }
       setTimeout(function() {
         document.getElementById("popUp").classList.remove("loader");
       }, delayInMilliseconds);
@@ -71,19 +68,6 @@ $(".closePopUp").on("click", function() {
 });
 }
 
-// Needs work! function to show article title / description in module
-
-// function articlesInModule(){
-//   //var delayInMilliseconds = 2000;
-//   $(".article h1").on("click", function() {
-//       document.getElementById("popUp").classList.remove("hidden");
-//       // if the first article is clicked
-//       // open the module and display the first article title
-//       setTimeout(function() {
-//         document.getElementById("popUp").classList.remove("loader");
-//       }, delayInMilliseconds);
-// });
-// }
 
 
 // Needs work! function to enable "read more from source" button to open new tab
