@@ -1,9 +1,6 @@
 var guardianUrl = 'https://content.guardianapis.com/search?' + 'api-key=84cff7a5-13e4-4b66-b235-40efe13230ae';
 var xhr = new XMLHttpRequest();
 
-// Guardian global variables
-// var guardianLink =
-
 // Request to Guardian API and appending of articles to #main
 
 function makeGuardianRequest(guardianUrl, error, response, body) {
@@ -28,6 +25,11 @@ function makeGuardianRequest(guardianUrl, error, response, body) {
           <section class="impressions">
             526
           </section>
+          <!-- .fields.thumbnail
+          trying to get images working here:
+          <section class="images">
+            <a href="#"><img src=data-image="${allArticles[i].image}">${allArticles[i].image}</h3></a>
+          </section>-->
           <div class="clearfix"></div>
         </article>
       `;
@@ -35,6 +37,7 @@ function makeGuardianRequest(guardianUrl, error, response, body) {
     $("#main").append(articleContent);
     popUp();
 
+// shows title when article is clicked on
   $(".article").on("click", "h3", function () {
       var articleTitle = $(event.target).html();
       var articleUrl = $(event.target).data("url");
@@ -51,7 +54,7 @@ function makeGuardianRequest(guardianUrl, error, response, body) {
 
 makeGuardianRequest(guardianUrl);
 
-// WORKS! popup loader for article module
+// popup loader for article module
 
 function popUp(){
   var delayInMilliseconds = 1000;
@@ -68,25 +71,7 @@ $(".closePopUp").on("click", function() {
 });
 }
 
-
-
-// Needs work! function to enable "read more from source" button to open new tab
-
-function readMoreButton(){
-  $(".popUpAction").on("click", function() {
-    document.getElementById("popUp");
-  })
-}
-
-
-// Needs work! function to handle the search bar
-
-    // var title = allArticles[i].webTitle;
-    // $("#popUpAction").append(articleContent);
-    // popUp();
-    // };
-
-  //  <button onclick="window.open('https://www.our-url.com')" id="myButton"
- //class="btn request-callback" >Read more from source  </button>
-
-    //});
+// slide search bar out on click
+$("#search").on("click", function () {
+    $("#search").toggleClass("active");
+});
